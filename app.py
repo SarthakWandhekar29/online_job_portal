@@ -1,4 +1,4 @@
-
+# Backend updated
 import smtplib
 from email.message import EmailMessage
 from flask import Flask, render_template, request, redirect, session, flash
