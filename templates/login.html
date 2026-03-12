@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login - WorkConnect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- Particles JS -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        /* VIDEO BACKGROUND */
+        
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -3;
+        }
+        /* DARK OVERLAY */
+        
+        .overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: -2;
+        }
+        /* PARTICLES */
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        /* MOVING LIGHT EFFECT */
+        
+        .light {
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.3) 0%, transparent 60%);
+            animation: moveLight 10s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes moveLight {
+            0% {
+                transform: translate(-50%, -50%);
+            }
+            50% {
+                transform: translate(0%, 0%);
+            }
+            100% {
+                transform: translate(-50%, -50%);
+            }
+        }
+        /* GLASS CARD */
+        
+        .card {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 20px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
+            animation: fadeIn 1.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h2 {
+            margin-bottom: 10px;
+        }
+        /* Typing Animation */
+        
+        .typing {
+            height: 25px;
+            margin-bottom: 20px;
+            color: #00f7ff;
+            font-weight: 500;
+            border-right: 2px solid #00f7ff;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 4s steps(30, end) infinite alternate, blink .7s infinite;
+        }
+        
+        @keyframes typing {
+            from {
+                width: 0
+            }
+            to {
+                width: 100%
+            }
+        }
+        
+        @keyframes blink {
+            50% {
+                border-color: transparent
+            }
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+        }
+        
+        .toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .toggle button {
+            padding: 8px 18px;
+            border: 2px solid #00f7ff;
+            border-radius: 25px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+        
+        .toggle button:hover {
+            background: #00f7ff;
+            color: black;
+            transform: scale(1.08);
+            box-shadow: 0 0 15px #00f7ff;
+        }
+        /* ACTIVE BUTTON STYLE */
+        
+        .toggle button.active {
+            background: linear-gradient(45deg, #00f7ff, #00ff88);
+            color: black;
+            box-shadow: 0 0 20px #00f7ff;
+            transform: scale(1.1);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #00f7ff, #00ff88);
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: .3s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #00f7ff;
+        }
+        
+        a {
+            display: block;
+            margin-top: 10px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO VIDEO -->
+    <video autoplay muted loop>
+        <source src="https://cdn.coverr.co/videos/coverr-blue-abstract-background-1563/1080p.mp4" type="video/mp4">
+    </video>
+
+    <div class="overlay"></div>
+    <div id="particles-js"></div>
+    <div class="light"></div>
+
+    <div class="card">
+        <h2>Login</h2>
+        <div class="typing">Connecting Talent With Opportunity...</div>
+
+        <form method="POST">
+            <div class="toggle">
+                <button type="button" id="managerBtn" onclick="setRole('manager')">Manager</button>
+                <button type="button" id="labourBtn" class="active" onclick="setRole('labour')">Labour</button>
+            </div>
+
+            <input type="hidden" name="role" id="role" value="labour">
+
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <button type="submit" class="btn">Login</button>
+            <a href="/register">Create New Account</a>
+        </form>
+
+        <a href="/">Back</a>
+    </div>
+
+    <script>
+        function setRole(role) {
+            document.getElementById("role").value = role;
+
+            const managerBtn = document.getElementById("managerBtn");
+            const labourBtn = document.getElementById("labourBtn");
+
+            managerBtn.classList.remove("active");
+            labourBtn.classList.remove("active");
+
+            if (role === "manager") {
+                managerBtn.classList.add("active");
+            } else {
+                labourBtn.classList.add("active");
+            }
+        }
+
+        /* PARTICLES CONFIG */
+        particlesJS("particles-js", {
+            particles: {
+                number: {
+                    value: 60
+                },
+                size: {
+                    value: 3
+                },
+                move: {
+                    speed: 2
+                },
+                line_linked: {
+                    enable: true
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

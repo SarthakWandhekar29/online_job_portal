@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WorkConnect | Labour Management Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f2027, #203a43);
+            overflow: hidden;
+        }
+        /* Subtle Industrial Background Pattern */
+        
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient( 45deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02) 2px, transparent 2px, transparent 20px);
+        }
+        /* Main Card */
+        
+        .card {
+            width: 420px;
+            padding: 60px 50px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Smooth Professional Rotation */
+            animation: rotateFloat 6s ease-in-out infinite alternate;
+        }
+        
+        @keyframes rotateFloat {
+            from {
+                transform: rotateY(-6deg);
+            }
+            to {
+                transform: rotateY(6deg);
+            }
+        }
+        
+        .card h1 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .card h1 span {
+            color: #ff9800;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #cccccc;
+            margin-bottom: 35px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: #ff9800;
+            margin: 20px auto 30px;
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            background: #ff9800;
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        
+        .btn:hover {
+            background: #ffa726;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+        }
+        
+        footer {
+            position: absolute;
+            bottom: 20px;
+            color: #aaa;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>Work<span>Connect</span></h1>
+        <div class="divider"></div>
+        <p class="subtitle">
+            Professional Labour & Workforce Management System
+        </p>
+        <a href="/login" class="btn">Login to Portal</a>
+    </div>
+
+    <footer>
+        © 2026 WorkConnect | Labour Management System
+    </footer>
+
+</body>
+
+</html>

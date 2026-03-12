@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register - WorkConnect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Particles JS -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #141E30, #243B55, #0f2027, #2c5364);
+            background-size: 400% 400%;
+            animation: gradient 12s ease infinite;
+            color: white;
+            padding: 20px 0;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .card {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 20px;
+            width: 800px;
+            max-width: 95%;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px cyan;
+        }
+        
+        .toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .toggle button {
+            padding: 8px 18px;
+            border: 2px solid #00f7ff;
+            border-radius: 25px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+        
+        .toggle button.active {
+            background: linear-gradient(45deg, #00f7ff, #00ff88);
+            color: black;
+            box-shadow: 0 0 20px #00f7ff;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        input,
+        select {
+            width: 100%;
+            padding: 8px 10px;
+            height: 38px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        select:invalid {
+            color: gray;
+        }
+        
+        select option {
+            color: black;
+        }
+        
+        .full-width {
+            grid-column: span 2;
+        }
+        
+        .btn {
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #00f7ff, #00ff88);
+            font-weight: bold;
+            cursor: pointer;
+            transition: .3s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #00f7ff;
+        }
+        
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #ccc;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .full-width {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="particles-js"></div>
+
+    <div class="card">
+        <h2>Register</h2>
+
+        <div class="toggle">
+            <button type="button" id="managerBtn" onclick="showManager()">Manager</button>
+            <button type="button" id="labourBtn" class="active" onclick="showLabour()">Labour</button>
+        </div>
+
+        <form method="POST">
+            <input type="hidden" name="role" id="role" value="labour">
+
+            <div class="form-grid">
+
+                <!-- Common -->
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <!-- Manager Fields -->
+                <div id="managerFields" class="full-width" style="display:none;">
+                    <div class="form-grid">
+                        <input type="text" name="company_name" placeholder="Company Name">
+                        <input type="text" name="company_location" placeholder="Company Location">
+                        <input type="text" name="job_title" placeholder="Job Title">
+                        <input type="text" name="working_time" placeholder="Working Time">
+
+                        <select name="job_type">
+                        <option value="" disabled selected>Select Job Type</option>
+                        <option value="Short Term">Short Term</option>
+                        <option value="Long Term">Long Term</option>
+                    </select>
+
+                        <select name="required_skills">
+                        <option value="" disabled selected>Select Required Skill</option>
+                        <option value="Plumber">Plumber</option>
+                        <option value="Fitter">Fitter</option>
+                        <option value="Turner">Turner</option>
+                        <option value="Painter">Painter</option>
+                        <option value="Home Worker">Home Worker</option>
+                        <option value="IT Developer">IT Developer</option>
+                    </select>
+
+                        <input type="number" name="daily_wage" placeholder="Daily Wage" class="full-width">
+                    </div>
+                </div>
+
+                <!-- Labour Fields -->
+                <div id="labourFields" class="full-width">
+                    <div class="form-grid">
+                        <input type="text" name="full_name" placeholder="Full Name">
+                        <input type="number" name="age" placeholder="Age">
+                        <input type="text" name="location" placeholder="Location">
+
+                        <select name="primary_skills" required>
+                        <option value="" disabled selected>Select Primary Skill</option>
+                        <option value="Plumber">Plumber</option>
+                        <option value="Fitter">Fitter</option>
+                        <option value="Turner">Turner</option>
+                        <option value="Painter">Painter</option>
+                        <option value="Home Worker">Home Worker</option>
+                        <option value="IT Developer">IT Developer</option>
+                    </select>
+
+                        <input type="text" name="experience_years" placeholder="Experience Years">
+
+                        <select name="avilability">
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                        <option value="Daily Wage">Daily Wage</option>
+                    </select>
+
+                        <input type="number" name="expected_wage" placeholder="Expected Wage" class="full-width">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn full-width">Register</button>
+
+            </div>
+        </form>
+
+        <a href="/login">Already have account? Login</a>
+    </div>
+
+    <script>
+        function showManager() {
+
+            document.getElementById("managerBtn").classList.add("active");
+            document.getElementById("labourBtn").classList.remove("active");
+
+            document.getElementById("role").value = "manager";
+
+            document.getElementById("managerFields").style.display = "block";
+            document.getElementById("labourFields").style.display = "none";
+
+            // disable labour fields
+            document.querySelectorAll("#labourFields input, #labourFields select")
+                .forEach(el => el.disabled = true);
+
+            // enable manager fields
+            document.querySelectorAll("#managerFields input, #managerFields select")
+                .forEach(el => el.disabled = false);
+        }
+
+        function showLabour() {
+
+            document.getElementById("labourBtn").classList.add("active");
+            document.getElementById("managerBtn").classList.remove("active");
+
+            document.getElementById("role").value = "labour";
+
+            document.getElementById("managerFields").style.display = "none";
+            document.getElementById("labourFields").style.display = "block";
+
+            // disable manager fields
+            document.querySelectorAll("#managerFields input, #managerFields select")
+                .forEach(el => el.disabled = true);
+
+            // enable labour fields
+            document.querySelectorAll("#labourFields input, #labourFields select")
+                .forEach(el => el.disabled = false);
+        }
+
+        particlesJS("particles-js", {
+            particles: {
+                number: {
+                    value: 60
+                },
+                size: {
+                    value: 3
+                },
+                move: {
+                    speed: 2
+                },
+                line_linked: {
+                    enable: true
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
